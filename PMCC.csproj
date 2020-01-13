@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A99F7EA9-69E6-417A-B0C9-8AE49DD859AA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PMCC</RootNamespace>
+    <AssemblyName>PMCC</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses2.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses2.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\AE_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\AE_Employee.Designer.cs">
+      <DependentUpon>AE_Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\AE_Projects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\AE_Projects.Designer.cs">
+      <DependentUpon>AE_Projects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\LoginSys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\LoginSys.Designer.cs">
+      <DependentUpon>LoginSys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\MainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\MainPage.Designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\ProjectDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\ProjectDetails.Designer.cs">
+      <DependentUpon>ProjectDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\RecoveryPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Layouts\RecoveryPassword.Designer.cs">
+      <DependentUpon>RecoveryPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\AdvanceFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\AdvanceFilter.Designer.cs">
+      <DependentUpon>AdvanceFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\CheckTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\CheckTime.Designer.cs">
+      <DependentUpon>CheckTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Confirm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Confirm.Designer.cs">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Human_Resources.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Human_Resources.Designer.cs">
+      <DependentUpon>Human_Resources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Personal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Personal.Designer.cs">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Profile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Projects.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Projects.Designer.cs">
+      <DependentUpon>Projects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Revenue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Revenue.Designer.cs">
+      <DependentUpon>Revenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Security.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Security.Designer.cs">
+      <DependentUpon>Security.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\SetUp_Schedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\SetUp_Schedule.Designer.cs">
+      <DependentUpon>SetUp_Schedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\User Control\Time_Controls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layouts\User Control\Time_Controls.Designer.cs">
+      <DependentUpon>Time_Controls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeeControl.cs" />
+    <Compile Include="Models\SystemControl.cs" />
+    <Compile Include="PMCC.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PMCC.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\AE_Employee.resx">
+      <DependentUpon>AE_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\AE_Projects.resx">
+      <DependentUpon>AE_Projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\LoginSys.resx">
+      <DependentUpon>LoginSys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\ProjectDetails.resx">
+      <DependentUpon>ProjectDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\RecoveryPassword.resx">
+      <DependentUpon>RecoveryPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\AdvanceFilter.resx">
+      <DependentUpon>AdvanceFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\CheckTime.resx">
+      <DependentUpon>CheckTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Confirm.resx">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Human_Resources.resx">
+      <DependentUpon>Human_Resources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Personal.resx">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Projects.resx">
+      <DependentUpon>Projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Revenue.resx">
+      <DependentUpon>Revenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Security.resx">
+      <DependentUpon>Security.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\SetUp_Schedule.resx">
+      <DependentUpon>SetUp_Schedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Layouts\User Control\Time_Controls.resx">
+      <DependentUpon>Time_Controls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
+    <None Include="DataClasses2.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses2.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataClasses2.dbml.layout">
+      <DependentUpon>DataClasses2.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="PMCC.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PMCC.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PMCC.dbml.layout">
+      <DependentUpon>PMCC.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\backLeave.png" />
+    <Content Include="Images\CancelEnter.png" />
+    <Content Include="Images\CancelLeave.png" />
+    <Content Include="Images\CheckInEnter.png" />
+    <Content Include="Images\CheckInLeave.png" />
+    <Content Include="Images\CheckOutEnter.png" />
+    <Content Include="Images\CheckOutLeave.png" />
+    <Content Include="Images\Circle.png" />
+    <Content Include="Images\Circle1.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\closing.png" />
+    <Content Include="Images\Closing_Enter.png" />
+    <Content Include="Images\done.png" />
+    <Content Include="Images\Ellipse 23.png" />
+    <Content Include="Images\HR.png" />
+    <Content Include="Images\hugo-productive-work.png" />
+    <Content Include="Images\backarrow.png" />
+    <Content Include="Images\LoginEnter.png" />
+    <Content Include="Images\LoginLeave.png" />
+    <Content Include="Images\messenger.png" />
+    <Content Include="Images\Path 3.png" />
+    <Content Include="Images\Path 4.png" />
+    <Content Include="Images\Path 5.png" />
+    <Content Include="Images\project.png" />
+    <Content Include="Images\revenue.png" />
+    <Content Include="Images\SaveEnter.png" />
+    <Content Include="Images\SaveLeave.png" />
+    <Content Include="Images\schedule.png" />
+    <Content Include="Images\TimeKeeper.png" />
+    <Content Include="Images\profile.png" />
+    <Content Include="Images\userAvartar1.png" />
+    <Content Include="Images\userAvartar2.png" />
+    <Content Include="Images\IconUser.png" />
+    <Content Include="Images\Line 1.png" />
+    <Content Include="Images\wrong.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

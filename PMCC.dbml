@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PMCC" Class="PMCCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=PMCC;Integrated Security=True" SettingsObjectName="PMCC.Properties.Settings" SettingsPropertyName="PMCCConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NetworkIp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Employee_Account" Member="Employee" ThisKey="id" OtherKey="id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="birthdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BasicSalary" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Employee_Account" Member="Account" ThisKey="id" OtherKey="id" Type="Account" Cardinality="One" />
+      <Association Name="Employee_ShiftPerWeek" Member="ShiftPerWeeks" ThisKey="id" OtherKey="EmpId" Type="ShiftPerWeek" />
+      <Association Name="Employee_Time_Keeper" Member="Time_Keepers" ThisKey="id" OtherKey="id" Type="Time_Keeper" />
+      <Association Name="Employee_Salary" Member="Salaries" ThisKey="id" OtherKey="EmpID" Type="Salary" />
+      <Association Name="Employee_Asign" Member="Asigns" ThisKey="id" OtherKey="idEmp" Type="Asign" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shift" Member="Shifts">
+    <Type Name="Shift">
+      <Column Name="ShiftId" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="shiftTime" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="shiftName" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Shift_ShiftPerWeek" Member="ShiftPerWeeks" ThisKey="ShiftId,shiftName" OtherKey="ShiftId,ShiftName" Type="ShiftPerWeek" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShiftPerWeek" Member="ShiftPerWeeks">
+    <Type Name="ShiftPerWeek">
+      <Column Name="EmpId" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShiftId" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ShiftName" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="day" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Employee_ShiftPerWeek" Member="Employee" ThisKey="EmpId" OtherKey="id" Type="Employee" IsForeignKey="true" />
+      <Association Name="Shift_ShiftPerWeek" Member="Shift" ThisKey="ShiftId,ShiftName" OtherKey="ShiftId,shiftName" Type="Shift" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Time_Keeper" Member="Time_Keepers">
+    <Type Name="Time_Keeper">
+      <Column Name="id" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CheckIn" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="CheckOut" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="dateWork" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="totalTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="notePerShift" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Employee_Time_Keeper" Member="Employee" ThisKey="id" OtherKey="id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Salary" Member="Salaries">
+    <Type Name="Salary">
+      <Column Name="EmpID" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="inMonth" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="totalTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalSalary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Employee_Salary" Member="Employee" ThisKey="EmpID" OtherKey="id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project" Member="Projects">
+    <Type Name="Project">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Bonus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Project_Asign" Member="Asigns" ThisKey="id" OtherKey="idProj" Type="Asign" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Asign" Member="Asigns">
+    <Type Name="Asign">
+      <Column Name="idProj" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEmp" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Employee_Asign" Member="Employee" ThisKey="idEmp" OtherKey="id" Type="Employee" IsForeignKey="true" />
+      <Association Name="Project_Asign" Member="Project" ThisKey="idProj" OtherKey="id" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.AddEmp" Method="AddEmp">
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="sex" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="birthdate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="phone" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="position" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="salary" Type="System.Single" DbType="Real" />
+    <Parameter Name="networkIP" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ConfirmShift" Method="ConfirmShift">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="totalTime" Type="System.Single" DbType="Real" />
+    <Parameter Name="dayWork" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateEmpInfo" Method="UpdateEmpInfo">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="sex" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="birthdate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="phone" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="address" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="position" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="BasicSalary" Parameter="basicSalary" Type="System.Single" DbType="Real" />
+    <Parameter Name="attitude" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdateEmpinfo_Basic" Method="UpdateEmpinfo_Basic">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="phone" Type="System.String" DbType="VarChar(10)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UpdatePassword" Method="UpdatePassword">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AttitudeCheck" Method="AttitudeCheck" IsComposable="true">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="dayWork" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.AutoId" Method="AutoId" IsComposable="true">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetContact" Method="GetContact" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.GetEmail" Method="GetEmail" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.GetName" Method="GetName" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.IsLogin" Method="IsLogin" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.luong" Method="luong" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="month" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Decimal" />
+  </Function>
+  <Function Name="dbo.CreateID" Method="CreateID" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.LoadData" Method="LoadData" IsComposable="true">
+    <ElementType Name="LoadDataResult">
+      <Column Name="ID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DeleteEmp" Method="DeleteEmp">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Check_CheckedShift" Method="Check_CheckedShift" IsComposable="true">
+    <Parameter Name="EmpID" Parameter="empID" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="date" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckShift" Method="CheckShift">
+    <Parameter Name="EmpId" Parameter="empId" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="dayWork" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="CheckTime" Parameter="checkTime" Type="System.TimeSpan" DbType="Time" />
+    <Parameter Name="note" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Test" Method="Test" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="TestResult">
+      <Column Name="id" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CheckIn" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="CheckOut" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="dateWork" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="totalTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="notePerShift" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TotalTime" Method="TotalTime" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="FromMonth" Parameter="fromMonth" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ToMonth" Parameter="toMonth" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Decimal" />
+  </Function>
+  <Function Name="dbo.LoadSalaryDetails" Method="LoadSalaryDetails">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="startDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="endDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="LoadSalaryDetailsResult">
+      <Column Name="[User]" Member="User" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[Check In]" Member="Check_In" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="[Check Out]" Member="Check_Out" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Total Time]" Member="Total_Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AddToSalary" Method="AddToSalary">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="month" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CheckRevenuePerMonth" Method="CheckRevenuePerMonth" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="month" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetPosition" Method="GetPosition" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.ShiftTime" Method="ShiftTime">
+    <Parameter Name="EmpID" Parameter="empID" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="day" Type="System.DateTime" DbType="Date" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.checkNV" Method="checkNV" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="checkNVResult1">
+      <Column Name="ID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadSalaryTable" Method="LoadSalaryTable" IsComposable="true">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="month" Type="System.Int32" DbType="Int" />
+    <Parameter Name="year" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LoadSalaryTableResult">
+      <Column Name="ID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[Full Name]" Member="Full_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Month" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Salary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AddProject" Method="AddProject">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="bonus" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UnableProject" Method="UnableProject">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LoadProjectTable" Method="LoadProjectTable">
+    <ElementType Name="LoadProjectTableResult">
+      <Column Name="[Project name]" Member="Project_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Bonus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Attitude" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.AddEmpToProj" Method="AddEmpToProj">
+    <Parameter Name="ProjName" Parameter="projName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="idEmp" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.RemoveFromProj" Method="RemoveFromProj">
+    <Parameter Name="ProjName" Parameter="projName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="idEmp" Type="System.String" DbType="VarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.EditProject" Method="EditProject">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="bonus" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LoadProjDetails" Method="LoadProjDetails">
+    <Parameter Name="ProjName" Parameter="projName" Type="System.String" DbType="NVarChar(100)" />
+    <ElementType Name="LoadProjDetailsResult">
+      <Column Name="[Full name]" Member="Full_name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Birth date]" Member="Birth_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Sex" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LoadRevenueTable" Method="LoadRevenueTable">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="month" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="LoadRevenueTableResult">
+      <Column Name="EmpID" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="inMonth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="totalTime" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TotalSalary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.RecoveryPassword" Method="RecoveryPassword">
+    <Parameter Name="id" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="newpass" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
